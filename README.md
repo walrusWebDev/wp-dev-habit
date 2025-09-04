@@ -1,5 +1,6 @@
 # WP Dev Habit: Your Daily Content Prompter
 WordPress plugin for creating better documentation habits
+
 Contributors: Lauren Bridges, gemini
 
 Tags: journal, content creator, daily log, productivity, post generator, writing helper
