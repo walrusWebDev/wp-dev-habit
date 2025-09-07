@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Adds the WP Dev Habit admin menu page.
  */
-function autodoc_add_admin_menu() {
+function devhabit_add_admin_menu() {
     add_menu_page(
         __( 'WP Dev Habit', 'wp-devhabit' ), // Page Title
         __( 'WP Dev Habit', 'wp-devhabit' ),          // Menu Title
