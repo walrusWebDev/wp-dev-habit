@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- App Structure ---
     function renderApp() {
-        // --- UPDATED HTML: Added Save to GitHub button and status area ---
+        const today = new Date();
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = today.toLocaleDateString(undefined, dateOptions); // Uses browser's default locale
+
         appContainer.innerHTML = `
             <div class="card">
-                <div class="header">
-                    <h1 class="title">WP Dev Habit</h1>
-                    <p class="subtitle">Your daily guided journaling tool.</p>
-                </div>
+                <p class="subtitle header">Follow the prompts to create a log for <strong style="color: #1e293b;">${formattedDate}</strong>.</p>
 
                 <div id="questionContainer" class="fade-in">
                     <div class="question-wrapper">
@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        // --- END UPDATED HTML ---
         addEventListeners();
         showQuestion();
     }
@@ -79,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element References & Event Listeners ---
     let questionContainer, questionLabel, answerInput, prevBtn, nextBtn, progressIndicator,
         resultContainerWrapper, resultContainer, copyBtn, restartBtn, copySuccessMessage,
-        saveGithubBtn, githubStatusMessage; // --- NEW: Added saveGithubBtn, githubStatusMessage ---
+        saveGithubBtn, githubStatusMessage;
 
     function addEventListeners() {
         questionContainer = document.getElementById('questionContainer');
@@ -93,10 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         copyBtn = document.getElementById('copyBtn');
         restartBtn = document.getElementById('restartBtn');
         copySuccessMessage = document.getElementById('copySuccessMessage');
-        // --- NEW: Get reference to new elements ---
+        
         saveGithubBtn = document.getElementById('saveGithubBtn');
         githubStatusMessage = document.getElementById('githubStatusMessage');
-        // --- END NEW ---
 
         nextBtn.addEventListener('click', handleNext);
         prevBtn.addEventListener('click', handlePrev);

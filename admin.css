@@ -5,50 +5,52 @@
  * borrowing from modern UI design but fitting within the WordPress dashboard.
  */
 
+ .update-when-official {
+    display: none;
+ }
+ 
 /* Main Wrapper */
-.devhabit-wrapper {
+.devhabit-app-container {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
-
-/* Card layout */
-.devhabit-wrapper .card {
+h1 {
+    text-align: center;
+}
+.header p {
+    font-size: 20px;
+}
+/* --- App Container & Card Layout --- */
+#appContainer .card {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     padding: 2rem 2.5rem;
     max-width: 700px;
-    margin: 2rem auto;
+    margin: 2rem auto; 
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-/* Header */
-.devhabit-wrapper .header {
+#appContainer .card .header { 
     text-align: center;
     margin-bottom: 2rem;
-}
-.devhabit-wrapper .title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin: 0;
-}
-.devhabit-wrapper .subtitle {
     font-size: 1rem;
     color: #64748b;
-    margin-top: 0.5rem;
+    margin-top: 0;
 }
 
 /* Question Area */
-.devhabit-wrapper .question-wrapper {
+#appContainer .card .question-wrapper {
     margin-bottom: 1.5rem;
 }
-.devhabit-wrapper label {
+#appContainer .card label {
     display: block;
     font-size: 1.1rem;
     font-weight: 500;
     color: #334155;
     margin-bottom: 0.75rem;
 }
-.devhabit-wrapper textarea {
+#appContainer .card textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #cbd5e1;
@@ -57,25 +59,25 @@
     line-height: 1.5;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
-.devhabit-wrapper textarea:focus {
+#appContainer .card textarea:focus {
     border-color: #4f46e5;
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
     outline: none;
 }
 
 /* Navigation */
-.devhabit-wrapper .navigation {
+#appContainer .card .navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.devhabit-wrapper #progressIndicator {
+#appContainer .card #progressIndicator {
     font-size: 0.875rem;
     color: #64748b;
 }
 
 /* Buttons */
-.devhabit-wrapper .btn {
+#appContainer .card .btn {
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
@@ -84,34 +86,35 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
-.devhabit-wrapper .btn:disabled {
+#appContainer .card .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
-.devhabit-wrapper .btn-primary {
+#appContainer .card .btn-primary {
     background-color: #4f46e5;
     color: #ffffff;
 }
-.devhabit-wrapper .btn-primary:hover:not(:disabled) {
+#appContainer .card .btn-primary:hover:not(:disabled) {
     background-color: #4338ca;
 }
-.devhabit-wrapper .btn-secondary {
+#appContainer .card .btn-secondary {
     background-color: #e2e8f0;
     color: #334155;
 }
-.devhabit-wrapper .btn-secondary:hover:not(:disabled) {
+#appContainer .card .btn-secondary:hover:not(:disabled) {
     background-color: #cbd5e1;
 }
 
 /* Result Area */
-.devhabit-wrapper .result-title {
+#appContainer .card .result-title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: #1e293b;
+    font-family: sans-serif; /* Override heading font if needed */
 }
-.devhabit-wrapper .result-box {
+#appContainer .card .result-box {
     background-color: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
@@ -125,24 +128,24 @@
     line-height: 1.6;
     color: #334155;
 }
-.devhabit-wrapper .result-actions {
+#appContainer .card .result-actions {
     margin-top: 1.5rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
-.devhabit-wrapper .copy-success {
+#appContainer .card .copy-success {
     text-align: center;
     color: #16a34a;
     font-weight: 500;
     margin-top: 1rem;
 }
 
-/* Utility Classes */
-.devhabit-wrapper .hidden {
+/* Utility Classes within card*/
+#appContainer .card .hidden {
     display: none;
 }
-.devhabit-wrapper .fade-in {
+#appContainer .card .fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
 @keyframes fadeIn {
@@ -151,35 +154,33 @@
 }
 
 
-/* --- GitHub Status Message Styles --- */
-.devhabit-wrapper .github-status {
+/* GitHub Status Message Styles within card */
+#appContainer .card .github-status {
     text-align: center;
     margin-top: 1rem;
     padding: 0.75rem;
     border-radius: 4px;
     font-weight: 500;
 }
-.devhabit-wrapper .status-loading {
+#appContainer .card .status-loading {
     color: #3b82f6; /* Blue */
     background-color: #dbeafe;
     border: 1px solid #bfdbfe;
 }
-.devhabit-wrapper .status-success {
+#appContainer .card .status-success {
     color: #16a34a; /* Green */
     background-color: #dcfce7;
     border: 1px solid #bbf7d0;
 }
-.devhabit-wrapper .status-success a {
+#appContainer .card .status-success a {
     color: #15803d; /* Darker Green for link */
     text-decoration: underline;
 }
-.devhabit-wrapper .status-error {
+#appContainer .card .status-error {
     color: #dc2626; /* Red */
     background-color: #fee2e2;
     border: 1px solid #fecaca;
 }
-
-/* Ensure status messages aren't hidden by accident */
-.devhabit-wrapper .github-status:not(.hidden) {
+#appContainer .card .github-status:not(.hidden) {
     display: block;
 }

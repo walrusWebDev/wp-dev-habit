@@ -23,8 +23,8 @@ if ( ! defined( 'WPINC' ) ) {
 function devhabit_add_admin_menu() {
     // Main journaling page
     add_menu_page(
-        __( 'WP Dev Habit', 'wp-devhabit' ),          // Page Title
-        __( 'Dev Habit Log', 'wp-devhabit' ),         // Menu Title (Changed for clarity)
+        __( 'WP DevHabit', 'wp-devhabit' ),          // Page Title
+        __( 'WP DevHabit Log', 'wp-devhabit' ),         // Menu Title (Changed for clarity)
         'manage_options',                             // Capability
         'wp-devhabit',                                // Menu Slug (Main page)
         'devhabit_render_admin_page',                 // Callback function
@@ -35,7 +35,7 @@ function devhabit_add_admin_menu() {
     // Settings sub-menu page
     add_submenu_page(
         'wp-devhabit',                                // Parent Slug
-        __( 'Dev Habit Settings', 'wp-devhabit' ),    // Page Title
+        __( 'WP DevHabit Settings', 'wp-devhabit' ),    // Page Title
         __( 'Settings', 'wp-devhabit' ),              // Menu Title
         'manage_options',                             // Capability
         'wp-devhabit-settings',                       // Menu Slug (Settings page)
@@ -49,11 +49,34 @@ add_action( 'admin_menu', 'devhabit_add_admin_menu' );
  * Renders the HTML for the main WP Dev Habit admin page (the journal tool).
  */
 function devhabit_render_admin_page() {
-    // Basic wrapper. The actual app is rendered by JS.
+    $current_version = '0.2.0'; // Define current version
+    $settings_url = admin_url('admin.php?page=wp-devhabit-settings');   
     ?>
-    <div id="appContainer" class="wrap devhabit-wrapper">
+    <div class="wrap devhabit-page-wrapper">
+        <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+        <div class="devhabit-intro-text" style="max-width: 700px; margin: 1.5em auto 1.5em auto; text-align: center;">
+            <p style="margin-bottom: 0.5em; color: #50575e; font-size: 0.9em;">
+                <?php printf( esc_html__( 'Version %s', 'wp-devhabit' ), esc_html( $current_version ) ); ?>
+                 <span class="update-when-official">| <a href="https://wordpress.org/plugins/wp-dev-habit/#developers"><?php esc_html_e( 'View Changelog', 'wp-devhabit' ); ?></a></span>
+            </p>
+            <p style="margin-bottom: 0.5em; color: #50575e;">
+                <span class="dashicons dashicons-info-outline" style="vertical-align: text-bottom; margin-right: 4px;"></span>
+                <?php esc_html_e( 'Tip: Use Ctrl+Enter (Cmd+Enter on Mac) to quickly advance.', 'wp-devhabit' ); ?>
+            </p>
+            <p style="margin-bottom: 0;"> <?php // Remove bottom margin on last paragraph ?>
+                <span class="dashicons dashicons-admin-settings" style="vertical-align: text-bottom; margin-right: 4px;"></span>
+                <?php printf(
+                    wp_kses_post( __( 'Configure your <a href="%s">GitHub Settings</a> to enable auto-saving.', 'wp-devhabit' ) ),
+                    esc_url( $settings_url )
+                 ); ?>
+            </p>
+        </div>
+        
+    </div>
+    <hr class="wp-header-end">
+    <div id="appContainer" class="devhabit-app-container">
         <!-- The app will be rendered here by admin.js -->
-        <h2>Loading Journal Tool...</h2>
+        <p style="text-align: center; color: #64748b; margin-top: 2em;">Loading Journal Tool...</p>
     </div>
     <?php
 }
@@ -343,5 +366,27 @@ function devhabit_ajax_save_log_to_github() {
 }
 // Hook for logged-in users
 add_action( 'wp_ajax_devhabit_save_log_to_github', 'devhabit_ajax_save_log_to_github' );
+
+/**
+ * Adds a support link to the admin footer on WP Dev Habit pages.
+ */
+function devhabit_add_admin_footer_link( $footer_text ) {
+    // Get the current screen object
+    $screen = get_current_screen();
+
+    // Check if we are on one of the WP Dev Habit pages
+    if ( $screen && ( $screen->id === 'toplevel_page_wp-devhabit' || $screen->id === 'dev-habit-log_page_wp-devhabit-settings' ) ) {
+        $support_url = 'https://wp-devhabit.com/support/';
+
+        // Append your link to the existing footer text
+        $footer_text .= ' | ' . sprintf(
+            wp_kses_post( __( 'Need help? Visit the <a href="%s" target="_blank" rel="noopener noreferrer">WP Dev Habit Support</a> page.', 'wp-devhabit' ) ),
+            esc_url( $support_url )
+        );
+    }
+
+    return $footer_text; // Return the modified or original text
+}
+add_filter( 'admin_footer_text', 'devhabit_add_admin_footer_link' );
 
 ?>
