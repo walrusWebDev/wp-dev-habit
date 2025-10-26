@@ -175,7 +175,7 @@ function devhabit_render_github_path_field() {
     $path = isset( $options['github_path'] ) ? $options['github_path'] : '_logs/'; // Default value
     ?>
     <input type="text" name="devhabit_github_options[github_path]" value="<?php echo esc_attr( $path ); ?>" class="regular-text" placeholder="e.g., _logs/ or leave blank for root" />
-    <p class="description"><?php esc_html_e( 'The folder within the repository to save logs. Must end with a slash if specified. Defaults to <code>_logs/</code>.', 'wp-devhabit' ); ?></p>
+    <p class="description"><?php esc_html_e( 'The folder within the repository to save logs. Must end with a slash if specified. Defaults to _logs/.', 'wp-devhabit' ); ?></p>
     <?php
 }
 
