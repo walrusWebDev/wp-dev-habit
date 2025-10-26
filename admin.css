@@ -1,5 +1,5 @@
 /**
- * Auto-Doc Admin CSS
+ * WP Dev Habit Admin CSS
  *
  * This file styles the admin page to look clean and professional,
  * borrowing from modern UI design but fitting within the WordPress dashboard.
@@ -148,4 +148,38 @@
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- GitHub Status Message Styles --- */
+.devhabit-wrapper .github-status {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+.devhabit-wrapper .status-loading {
+    color: #3b82f6; /* Blue */
+    background-color: #dbeafe;
+    border: 1px solid #bfdbfe;
+}
+.devhabit-wrapper .status-success {
+    color: #16a34a; /* Green */
+    background-color: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+.devhabit-wrapper .status-success a {
+    color: #15803d; /* Darker Green for link */
+    text-decoration: underline;
+}
+.devhabit-wrapper .status-error {
+    color: #dc2626; /* Red */
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+/* Ensure status messages aren't hidden by accident */
+.devhabit-wrapper .github-status:not(.hidden) {
+    display: block;
 }
