@@ -1,5 +1,5 @@
 /**
- * WP Dev Habit Admin JS
+ * Daily Dev Habit Admin JS
  *
  * This file handles the interactive questionnaire logic and GitHub saving.
  * Version: 0.2.0
@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const appContainer = document.getElementById('appContainer');
     if (!appContainer) {
-        console.error('WP Dev Habit: appContainer element not found.');
+        console.error('Daily Dev Habit: appContainer element not found.');
         return; // Exit if the container element isn't found
     }
 
     // Check if localized data is available
     if (typeof devhabit_ajax === 'undefined') {
-        console.error('WP Dev Habit: Localized AJAX data not found. Make sure wp_localize_script is working correctly.');
+        console.error('Daily Dev Habit: Localized AJAX data not found. Make sure wp_localize_script is working correctly.');
         // Optionally display an error message in the UI
         appContainer.innerHTML = '<div class="notice notice-error"><p>Error: Plugin configuration data is missing. Cannot save to GitHub.</p></div>';
         return;
@@ -100,9 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtn.addEventListener('click', handlePrev);
         copyBtn.addEventListener('click', copyToClipboard);
         restartBtn.addEventListener('click', handleRestart);
-        // --- NEW: Add event listener for GitHub save button ---
         saveGithubBtn.addEventListener('click', saveToGitHub);
-        // --- END NEW ---
         answerInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault();
@@ -110,9 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-
-    // --- Functions (Existing functions remain mostly unchanged) ---
+    
     function showQuestion() {
         if (!questionContainer) return; // Add checks for element existence
         questionContainer.classList.remove('fade-in');
@@ -179,10 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         if (resultContainer) resultContainer.textContent = markdownOutput.trim(); // Trim trailing newlines
-
-        // --- NEW: Reset GitHub status on showing result ---
+        
         hideGithubStatus();
-        // --- END NEW ---
     }
 
     function copyToClipboard() {
@@ -200,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-     // Fallback for older browsers or insecure contexts
+    // Fallback for older browsers or insecure contexts
     function fallbackCopyTextToClipboard(text) {
         const tempTextArea = document.createElement('textarea');
         tempTextArea.value = text;
@@ -224,9 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             copySuccessMessage.classList.remove('hidden');
             setTimeout(() => copySuccessMessage.classList.add('hidden'), 2000);
         }
-        // --- NEW: Hide GitHub status if copy is clicked ---
         hideGithubStatus();
-        // --- END NEW ---
     }
 
     function handleRestart() {
@@ -234,13 +226,10 @@ document.addEventListener('DOMContentLoaded', () => {
         answers.fill('');
         if (resultContainerWrapper) resultContainerWrapper.classList.add('hidden');
         if (questionContainer) questionContainer.classList.remove('hidden');
-        // --- NEW: Hide GitHub status on restart ---
         hideGithubStatus();
-        // --- END NEW ---
         showQuestion();
     }
-
-    // --- NEW: GitHub Save Functionality ---
+    
     function saveToGitHub() {
         if (isSaving || !resultContainer || !resultContainer.textContent) {
             return; // Prevent multiple clicks or saving empty content
@@ -320,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
          if (saveGithubBtn) saveGithubBtn.disabled = disabled;
          if (restartBtn) restartBtn.disabled = disabled;
     }
-    // --- END NEW ---
 
     // --- Initial Load ---
     renderApp();

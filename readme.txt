@@ -1,8 +1,8 @@
-=== WP Dev Habit: Your Daily Content Prompter ===
+=== Daily Dev Habit: Your Daily Content Prompter
 
 
-Contributors: oneoffboss
-Tags: documentation, journal, developer tools, github, content creator, productivity, writing helper, log
+Contributors: lbrigade79
+Tags: documentation, journal, developer tools, github, productivity,
 
 
 Requires at least: 5.8
@@ -16,7 +16,7 @@ A simple, elegant tool that asks probing questions via the WordPress admin to he
 
 == Description ==
 
-WP Dev Habit was born from a personal need: to find a healthier, more productive way to channel the anxious energy that comes with complex development work and build a consistent habit of documenting the process.
+Daily Dev Habit was born from a personal need: to find a healthier, more productive way to channel the anxious energy that comes with complex development work and build a consistent habit of documenting the process.
 
 This plugin adds a guided journaling tool directly into your WordPress admin dashboard ("Dev Habit Log"). By answering a series of targeted prompts at the end of your workday, you generate a clean, structured Markdown log of your progress, challenges, and learnings.
 
@@ -50,7 +50,7 @@ Choose the .zip file you downloaded and click "Install Now".
 
 Once installed, click "Activate Plugin".
 
-You will find the "Dev Habit Log" page under the main "WP Dev Habit" menu item in your admin sidebar.
+You will find the "Dev Habit Log" page under the main "Daily Dev Habit" menu item in your admin sidebar.
 
 (Optional) Navigate to the "Settings" submenu under "Dev Habit Log" to configure the GitHub integration if you wish to use the auto-save feature. You will need a GitHub Personal Access Token with repo or public_repo scope.
 
@@ -80,7 +80,7 @@ Not yet. This is a planned feature for a future version.
 
 = Is this plugin free? =
 
-Yes, WP DevHabit is free and open-source under the GPLv2 (or later) license.
+Yes, Daily Dev Habit is free and open-source under the GPLv2 (or later) license.
 
 == Screenshots ==
 
@@ -89,8 +89,6 @@ The guided journaling interface.
 The results screen showing the generated Markdown log and action buttons.
 
 The GitHub integration settings page.
-
-(Note: You will need to add actual screenshot files named screenshot-1.png, screenshot-2.png, etc., to the /assets directory in your plugin's SVN repository later)
 
 == Changelog ==
 
