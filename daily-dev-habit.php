@@ -27,7 +27,7 @@ function devhabit_add_admin_menu() {
         __( 'Daily DevHabit Log', 'daily-devhabit' ),
         'manage_options',
         'daily-devhabit', 
-        'devhabit_render_admin_page',
+        'daily_devhabit_render_admin_page',
         'dashicons-edit-page',
         80 
     );
@@ -39,7 +39,7 @@ function devhabit_add_admin_menu() {
         __( 'Settings', 'daily-devhabit' ),              // Menu Title
         'manage_options',                             // Capability
         'daily-devhabit-settings',                       // Menu Slug (Settings page)
-        'devhabit_render_settings_page'               // Callback function
+        'daily_devhabit_render_settings_page'               // Callback function
     );
 }
 add_action( 'admin_menu', 'devhabit_add_admin_menu' );
@@ -48,13 +48,13 @@ add_action( 'admin_menu', 'devhabit_add_admin_menu' );
 /**
  * Renders the HTML for the main Daily Dev Habit admin page (the journal tool).
  */
-function devhabit_render_admin_page() {
+function daily_devhabit_render_admin_page() {
     $current_version = '0.2.0'; // Define current version
     $settings_url = admin_url('admin.php?page=daily-devhabit-settings');   
     ?>
-    <div class="wrap devhabit-page-wrapper">
+    <div class="wrap daily-devhabit-page-wrapper">
         <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-        <div class="devhabit-intro-text" style="max-width: 700px; margin: 1.5em auto 1.5em auto; text-align: center;">
+        <div class="daily-devhabit-intro-text" style="max-width: 700px; margin: 1.5em auto 1.5em auto; text-align: center;">
             <p style="margin-bottom: 0.5em; color: #50575e; font-size: 0.9em;">
                 <?php printf( esc_html__( 'Version %s', 'daily-devhabit' ), esc_html( $current_version ) ); ?>
                  <span class="update-when-official">| <a href="https://wordpress.org/plugins/daily-dev-habit/#developers"><?php esc_html_e( 'View Changelog', 'daily-devhabit' ); ?></a></span>
